@@ -1,0 +1,51 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'ZZTIME_C_PROJECTTP', 
+    typeNamePlural: 'ZZTIME_C_PROJECTTPs'
+  }
+}
+annotate view ZZTIME_C_PROJECTTP with
+{
+  @UI.facet: [ {
+    id: 'idIdentification', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'ZZTIME_C_PROJECTTP', 
+    position: 10 
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 10 , 
+    label: ''
+  } ]
+  ProjectID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 20 , 
+    label: ''
+  } ]
+  Name;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 30 , 
+    label: ''
+  } ]
+  Descripton;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

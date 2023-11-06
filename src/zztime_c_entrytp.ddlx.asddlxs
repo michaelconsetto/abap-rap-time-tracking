@@ -1,0 +1,62 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'ZZTIME_C_ENTRYTP', 
+    typeNamePlural: 'ZZTIME_C_ENTRYTPs'
+  }
+}
+annotate view ZZTIME_C_ENTRYTP with
+{
+  @UI.facet: [ {
+    id: 'idIdentification', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'ZZTIME_C_ENTRYTP', 
+    position: 10 
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 10 , 
+    label: ''
+  } ]
+  EntryID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 20 , 
+    label: ''
+  } ]
+  ProjectID;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 30 , 
+    label: ''
+  } ]
+  Entydate;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #MEDIUM, 
+    label: 'hours'
+  } ]
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'hours'
+  } ]
+  Entryhours;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

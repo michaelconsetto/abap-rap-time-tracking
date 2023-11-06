@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for ZZTIME_C_ENTRYTP'
+define service ZZTIME_UI_ENTRY {
+  expose ZZTIME_C_ENTRYTP   as Entry;
+  expose ZZTIME_C_PROJECTTP as Project;
+}
