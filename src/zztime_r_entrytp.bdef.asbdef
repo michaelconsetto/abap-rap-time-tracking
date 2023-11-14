@@ -8,22 +8,17 @@ draft table ZZTIME_ENTRY_D
 etag master LocalLastChangedAt
 lock master total etag LastChangedAt
 authorization master( global )
-
+early numbering
 {
-  field ( mandatory : create )
-   EntryID,
-   ProjectID;
-
   field ( readonly )
+   EntryID,
+   ProjectID,
    LocalCreatedAt,
    CreatedBy,
    LastChangedAt,
    LocalLastChangedAt,
    LocalLastChangedBy;
 
-  field ( readonly : update )
-   EntryID,
-   ProjectID;
 
 
   create;
