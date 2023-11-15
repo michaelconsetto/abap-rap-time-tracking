@@ -10,8 +10,7 @@ lock master total etag LastChangedAt
 authorization master( global )
 
 {
-  field ( mandatory : create )
-   ProjectID;
+
 
   field ( readonly )
    LocalCreatedAt,
@@ -20,8 +19,6 @@ authorization master( global )
    LocalLastChangedAt,
    LocalLastChangedBy;
 
-  field ( readonly : update )
-   ProjectID;
 
 
   create;

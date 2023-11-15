@@ -12,7 +12,6 @@ early numbering
 {
   field ( readonly )
    EntryID,
-   ProjectID,
    LocalCreatedAt,
    CreatedBy,
    LastChangedAt,

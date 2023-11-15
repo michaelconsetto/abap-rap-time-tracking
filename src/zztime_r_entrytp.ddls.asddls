@@ -1,10 +1,11 @@
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: '##GENERATED RAP Time Tracking'
 define root view entity ZZTIME_R_ENTRYTP
-  as select from zztime_entry
+  as select from zztime_entry as TimeEntry
+  association [0..1] to ZZTIME_R_PROJECTTP as _Project on $projection.ProjectID = _Project.ProjectID
 {
   key entry_id as EntryID,
-  key project_id as ProjectID,
+  project_id as ProjectID,
   entydate as Entydate,
   entryhours as Entryhours,
   @Semantics.systemDateTime.lastChangedAt: true
@@ -16,6 +17,9 @@ define root view entity ZZTIME_R_ENTRYTP
   @Semantics.user.localInstanceLastChangedBy: true
   local_last_changed_by as LocalLastChangedBy,
   @Semantics.systemDateTime.localInstanceLastChangedAt: true
-  local_last_changed_at as LocalLastChangedAt
+  local_last_changed_at as LocalLastChangedAt,
+  
+  // Public Associations
+  _Project
   
 }
