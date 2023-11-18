@@ -19,6 +19,12 @@ early numbering
    LocalLastChangedBy;
 
 
+  field ( mandatory )
+  Entrydate;
+
+// Determinations
+  determination defaultDate on modify { create; field Entrydate; }
+
 
   create;
   update;
@@ -34,7 +40,7 @@ early numbering
   {
     EntryID = entry_id;
     ProjectID = project_id;
-    Entydate = entydate;
+    Entrydate = entrydate;
     Entryhours = entryhours;
     LastChangedAt = last_changed_at;
     CreatedBy = created_by;

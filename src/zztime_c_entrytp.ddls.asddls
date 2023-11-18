@@ -14,9 +14,8 @@ define root view entity ZZTIME_C_ENTRYTP
       @ObjectModel.text.element: ['ProjectName']
       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZZTIME_R_PROJECTTP', element: 'ProjectID' } }]
       ProjectID,
-
       _Project.Name as ProjectName,
-      Entydate,
+      Entrydate,
       Entryhours,
       LocalLastChangedAt
 

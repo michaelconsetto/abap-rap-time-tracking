@@ -6,7 +6,9 @@ CLASS lhc_zztime_r_entrytp DEFINITION INHERITING FROM cl_abap_behavior_handler.
         REQUEST requested_authorizations FOR zztime_r_entrytp
         RESULT result,
       earlynumbering_create FOR NUMBERING
-        IMPORTING entities FOR CREATE zztime_r_entrytp.
+        IMPORTING entities FOR CREATE zztime_r_entrytp,
+      defaultdate FOR DETERMINE ON MODIFY
+        IMPORTING keys FOR zztime_r_entrytp~defaultdate.
 ENDCLASS.
 
 CLASS lhc_zztime_r_entrytp IMPLEMENTATION.
@@ -15,8 +17,8 @@ CLASS lhc_zztime_r_entrytp IMPLEMENTATION.
   METHOD earlynumbering_create.
 
     DATA:
-      entity           TYPE STRUCTURE FOR CREATE zztime_r_entrytp,
-      id_max           TYPE zztime_entry_id.
+      entity TYPE STRUCTURE FOR CREATE zztime_r_entrytp,
+      id_max TYPE zztime_entry_id.
 
 
     "Ensure ID is not set yet (idempotent)- must be checked when BO is draft-enabled
@@ -49,6 +51,33 @@ CLASS lhc_zztime_r_entrytp IMPLEMENTATION.
                       %is_draft = entity-%is_draft
                     ) TO mapped-zztime_r_entrytp.
     ENDLOOP.
+
+  ENDMETHOD.
+
+  METHOD defaultDate.
+    "Read instances of the transferred keys
+    READ ENTITIES OF ZZTIME_R_ENTRYTP IN LOCAL MODE
+     ENTITY ZZTIME_R_ENTRYTP
+       FIELDS ( Entrydate )
+       WITH CORRESPONDING #( keys )
+     RESULT DATA(entries)
+     FAILED DATA(read_failed).
+
+    "If date is already set, do nothing, i.e. remove such instances
+    DELETE entries WHERE Entrydate IS NOT INITIAL.
+    CHECK entries IS NOT INITIAL.
+
+    "set date to system date
+    MODIFY ENTITIES OF ZZTIME_R_ENTRYTP IN LOCAL MODE
+      ENTITY ZZTIME_R_ENTRYTP
+        UPDATE SET FIELDS
+        WITH VALUE #( FOR entry IN entries ( %tky    = entry-%tky
+                                              Entrydate = cl_abap_context_info=>get_system_date( ) ) )
+    REPORTED DATA(update_reported).
+
+    "Set the changing parameter
+    reported = CORRESPONDING #( DEEP update_reported ).
+
 
   ENDMETHOD.
 
